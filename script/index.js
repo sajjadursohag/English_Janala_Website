@@ -78,7 +78,23 @@ const loadWordDetail = async (id) => {
 const displayWordDetails = (word) => {
   console.log(word);
   const detailsBox = document.getElementById("details-container");
-  detailsBox.innerHTML = "Hi am from JS";
+  detailsBox.innerHTML = `<div class="">
+        <h2 class="text-2xl font-bold">Eager (<i class="fa-solid fa-microphone-lines"></i>    :ইগার)</h2>
+      </div>
+      <div class="">
+        <h2 class="font-bold">Meaning</h2>
+        <p>আগ্রহী </p>
+      </div>
+      <div class="">
+        <h2 class="font-bold">Example</h2>
+        <p>He is eager to learn English.</p>
+      </div>
+      <div class="">
+        <h2 class="font-bold">Synonyms</h2>
+        <span class="btn">Syn1</span>
+        <span class="btn">Syn2</span>
+        <span class="btn">Syn3</span>
+      </div>`;
   document.getElementById("word_modal").showModal();
 };
 
