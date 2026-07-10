@@ -1,3 +1,8 @@
+const createElemnts = (arr) => {
+  const htmlElements = arr.map((el) => `<span class="btn">${el}</span>`);
+  return (htmlElements.join(""));
+};
+
 const loadLessons = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all") // promise of response
     .then((res) => res.json()) // promise of json data
@@ -67,6 +72,21 @@ const displayLevelWord = (words) => {
   });
 };
 
+// {
+//     "word": "Eager",
+//     "meaning": "আগ্রহী",
+//     "pronunciation": "ইগার",
+//     "level": 1,
+//     "sentence": "The kids were eager to open their gifts.",
+//     "points": 1,
+//     "partsOfSpeech": "adjective",
+//     "synonyms": [
+//         "enthusiastic",
+//         "excited",
+//         "keen"
+//     ],
+//     "id": 5
+// }
 const loadWordDetail = async (id) => {
   const url = `https://openapi.programming-hero.com/api/word/${id}`;
   // console.log(url);
@@ -79,21 +99,18 @@ const displayWordDetails = (word) => {
   console.log(word);
   const detailsBox = document.getElementById("details-container");
   detailsBox.innerHTML = `<div class="">
-        <h2 class="text-2xl font-bold">Eager (<i class="fa-solid fa-microphone-lines"></i>    :ইগার)</h2>
+        <h2 class="text-2xl font-bold"> ${word.word}(<i class="fa-solid fa-microphone-lines"></i>    :${word.pronunciation})</h2>
       </div>
       <div class="">
-        <h2 class="font-bold">Meaning</h2>
-        <p>আগ্রহী </p>
+        <h2 class="font-bold">${word.meaning}</h2>
       </div>
       <div class="">
         <h2 class="font-bold">Example</h2>
-        <p>He is eager to learn English.</p>
+        <p>${word.sentence}</p>
       </div>
       <div class="">
         <h2 class="font-bold">Synonyms</h2>
-        <span class="btn">Syn1</span>
-        <span class="btn">Syn2</span>
-        <span class="btn">Syn3</span>
+        <div class="">${createElemnts(word.synonyms)}</div>
       </div>`;
   document.getElementById("word_modal").showModal();
 };
